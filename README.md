@@ -18,7 +18,7 @@ This is a simple Node.js server for managing a todo list. The server serves HTML
 
 1. Clone the repository and navigate to the project directory.
 
-2. Start the server.
+2. Start the server. To do it, either launch ```node server.js``` or ```node server-advanced.js```
 
 3. Open your browser and navigate to:
    - The main page to view the todo list.
