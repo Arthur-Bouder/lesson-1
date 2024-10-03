@@ -1,33 +1,20 @@
-import express, { response } from "express";
+import express from "express";
+import path from "path";
+
+// Allow to use __dirname in a "type": "module" project
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+import todosRouter from "./routes/todoRoutes.js";
 
 const app = express();
-const loggerMiddleware = (request, response, next) => {
-	console.log("BEGIN");
-	next();
-};
+app.use(express.json());
 
-const authMiddleware = (request, response, next) => {
-	const tok = request.headers.token;
+app.use("/todos", todosRouter);
 
-	if (tok === "aaa") {
-		next();
-	} else {
-		response.status(403).send("Missing token");
-	}
-};
-
-app.use(authMiddleware);
-
-app.use(loggerMiddleware);
-
-app.use(express.static("public"));
-
-app.get("/json/*", (request, response) => {
-	response.json({ message: "Hello, world!" });
-});
-
-app.get("/", (request, response) => {
-	response.sendFile("index.html");
+app.get("/form", (request, response) => {
+	response.sendFile(__dirname + "/public/form.html");
 });
 
 app.all("*", (request, response) => {

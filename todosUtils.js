@@ -16,18 +16,24 @@ export const addTodo = (newTodo) => {
 	todos.push(newTodo);
 
 	fs.writeFileSync(todosPath, JSON.stringify(todos));
+
+	return newTodo;
 };
 
-export const removeTodo = (index) => {
+export const removeTodo = (id) => {
 	const todos = readTodos();
 
-	todos.splice(index, 1);
+	const newTodos = todos.filter((todo) => todo.id !== id);
 
-	fs.writeFileSync(todosPath, JSON.stringify(todos));
+	fs.writeFileSync(todosPath, JSON.stringify(newTodos));
+
+	return newTodos;
 };
 
 export const removeTodos = () => {
 	const newTodos = [];
 
 	fs.writeFileSync(todosPath, JSON.stringify(newTodos));
+
+	return newTodos;
 };
