@@ -6,6 +6,18 @@ const loggerMiddleware = (request, response, next) => {
 	next();
 };
 
+const authMiddleware = (request, response, next) => {
+	const tok = request.headers.token;
+
+	if (tok === "aaa") {
+		next();
+	} else {
+		response.status(403).send("Missing token");
+	}
+};
+
+app.use(authMiddleware);
+
 app.use(loggerMiddleware);
 
 app.use(express.static("public"));
