@@ -1,5 +1,0 @@
-{
-  "transform": {},
-  "roots": ["<rootDir>"],
-  "testMatch": ["**/*.test.js"]
-}

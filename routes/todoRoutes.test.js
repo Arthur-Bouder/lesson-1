@@ -6,12 +6,12 @@ import { app } from "../server-express.js";
 
 const request = supertest(app);
 
-describe("User routes", () => {
-	beforeAll(async () => {
+describe("Todos routes", () => {
+	before(async () => {
 		await connect();
 	});
 
-	afterAll(async () => {
+	after(async () => {
 		await closeDatabase();
 	});
 

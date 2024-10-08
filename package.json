@@ -5,7 +5,7 @@
   "main": "server-advanced.js",
   "scripts": {
     "dev": "nodemon server-express.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "mocha -timeout 5000 **/*.test.js",
     "start": "node server.js"
   },
   "author": "",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "chai": "^5.1.1",
-    "jest": "^29.7.0",
+    "mocha": "^10.7.3",
     "mongodb-memory-server": "^10.0.1",
     "supertest": "^7.0.0"
   }
