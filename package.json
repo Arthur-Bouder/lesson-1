@@ -5,7 +5,7 @@
   "main": "server-advanced.js",
   "scripts": {
     "dev": "nodemon server-express.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "node server.js"
   },
   "author": "",
@@ -15,6 +15,14 @@
     "bcrypt": "^5.1.1",
     "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.7.0"
+    "mongoose": "^8.7.0",
+    "multer": "^1.4.5-lts.1",
+    "socket.io": "^4.8.0"
+  },
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.0.1",
+    "supertest": "^7.0.0"
   }
 }

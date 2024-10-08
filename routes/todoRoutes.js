@@ -4,7 +4,6 @@ import {
 	getOne,
 	addOne,
 	removeOne,
-	removeAll,
 } from "../controller/todosController.js";
 
 const router = express.Router();
@@ -15,7 +14,6 @@ router.get("/:id", getOne);
 router.post("/", addOne);
 
 router.delete("/:id", removeOne);
-router.delete("/", removeAll);
 
 router.all("*", (req, res) => {
 	res.status(404).send("Not found");

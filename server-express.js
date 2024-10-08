@@ -1,26 +1,12 @@
 import express from "express";
-import path from "path";
 import mongoose from "mongoose";
-import { User } from "./models/userModel.js";
 
-// Allow to use __dirname in a "type": "module" project
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-import todosRouter from "./routes/todoRoutes.js";
-import { loginUser, registerUser } from "./controller/authController.js";
-import { authMiddleware } from "./middlewares/authMiddleware.js";
-
-const app = express();
+export const app = express();
 app.use(express.json());
 
-app.post("/register", registerUser);
-app.post("/login", loginUser);
-
-app.use(authMiddleware);
-
-app.use("/todos", todosRouter);
+app.get("/", (request, response) => {
+	response.send("Hello World");
+});
 
 app.all("*", (request, response) => {
 	response.status(404).send("Not found");
