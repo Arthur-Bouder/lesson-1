@@ -3,6 +3,7 @@ import supertest from "supertest";
 
 import { connect, closeDatabase } from "../test.setup.js";
 import { app } from "../server-express.js";
+import { title } from "process";
 
 const request = supertest(app);
 
@@ -15,10 +16,24 @@ describe("Todos routes", () => {
 		await closeDatabase();
 	});
 
-	it.only("GET / - should return Hello World", async () => {
-		const response = await request.get("/");
+	it("GET /todos", (done) => {
+		request.get("/todos").then((response) => {
+			assert.strictEqual(response.status, 200);
+			assert.strictEqual(response.body.length, 0);
 
-		assert.strictEqual(response.status, 200);
-		assert.strictEqual(response.text, "Hello World");
+			done();
+		});
+	});
+
+	it("POST /todos", async () => {
+		const response = await request.post("/todos").send({
+			title: "Test",
+		});
+		assert.equal(response.status, 201);
+
+		const getResponse = await request.get("/todos");
+
+		assert.strictEqual(getResponse.body.length, 1);
+		assert.strictEqual(getResponse.body[0].title, "Test");
 	});
 });

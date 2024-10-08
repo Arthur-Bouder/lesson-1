@@ -1,12 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
 
+import todosRouter from "./routes/todoRoutes.js";
+
 export const app = express();
 app.use(express.json());
-
 app.get("/", (request, response) => {
 	response.send("Hello World");
 });
+
+app.use("/todos", todosRouter);
 
 app.all("*", (request, response) => {
 	response.status(404).send("Not found");
