@@ -1,9 +1,8 @@
 import assert from "assert";
 import supertest from "supertest";
 
-import { connect, closeDatabase } from "../test.setup.js";
+import { connect, closeDatabase, clearDatabase } from "../test.setup.js";
 import { app } from "../server-express.js";
-import { title } from "process";
 
 const request = supertest(app);
 
@@ -14,6 +13,10 @@ describe("Todos routes", () => {
 
 	after(async () => {
 		await closeDatabase();
+	});
+
+	afterEach(async () => {
+		await clearDatabase();
 	});
 
 	it("GET /todos", (done) => {
